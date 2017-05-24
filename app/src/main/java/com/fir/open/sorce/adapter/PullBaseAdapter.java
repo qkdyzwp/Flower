@@ -17,6 +17,7 @@ import java.util.List;
 
 public class PullBaseAdapter extends RecyclerView.Adapter<PullBaseAdapter.ViewHolder>{
     private List<String> strList;
+
     private LayoutInflater inflater;
     public PullBaseAdapter(List<String> strList, Context context){
         this.strList=strList;
