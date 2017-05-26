@@ -36,7 +36,7 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
 
     private LinearLayout headView;
 
-    private LayoutInflater inflater;
+    public LayoutInflater inflater;
 
     private ImageView emptyImg;
 
@@ -68,6 +68,7 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
         basePullListView.setLayoutManager(new LinearLayoutManager(this));
         myAdapter = getAdapter();
         basePullListView.setAdapter(myAdapter);
+        initData();
         getData(HttpLoadEnum.LOADFIRST);
         basePullListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -101,10 +102,9 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
     public abstract void loadData(int page, PullData<T> pull);
     /**
      * 设置头布局
-     * @param headLayout
+     * @param view
      */
-    public void setHeadView(int headLayout){
-        View view=inflater.inflate(headLayout,null);
+    public void setHeadView(View view){
         headView.addView(view);
     }
 
@@ -177,4 +177,5 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
         basePullListView.setVisibility(View.VISIBLE);
     }
 
+    public abstract  void initData();
 }

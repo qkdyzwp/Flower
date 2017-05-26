@@ -27,13 +27,9 @@ public class TestActivityForPull extends PullBaseActivity<String> {
         //数据请求失败调用  pull.error();
     }
 
-    /**
-     * 从写父类的初始化方法，可在已在这里做一些基础设置
-     */
     @Override
-    public void init() {
-        super.init();
-        setHeadView(R.layout.head_layout);
+    public void initData() {
+        setHeadView(inflater.inflate(R.layout.head_layout,null));
         setEmptyImg(R.mipmap.ic_launcher);
         setEmptyText("该测试数据为空");
     }

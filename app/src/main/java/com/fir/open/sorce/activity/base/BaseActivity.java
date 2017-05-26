@@ -6,7 +6,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.fir.open.sorce.R;
-
 /**
  * activity
  */

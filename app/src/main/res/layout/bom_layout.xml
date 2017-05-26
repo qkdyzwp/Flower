@@ -1,28 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <include
-        layout="@layout/head_layout"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"></include>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/mViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#888" />
-
+    android:layout_height="match_parent">
     <com.yinglan.alphatabs.AlphaTabsIndicator
         android:id="@+id/alphaIndicator"
         android:layout_width="match_parent"
@@ -30,16 +11,16 @@
         android:orientation="horizontal">
 
         <com.yinglan.alphatabs.AlphaTabView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:padding="5dp"
-        app:tabIconNormal="@mipmap/widget_bar_product_normal"
-        app:tabIconSelected="@mipmap/widget_bar_product_press"
-        app:tabText="首页"
-        app:tabTextSize="13sp"
-        app:textColorNormal="#999999"
-        app:textColorSelected="#46c01b" />
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:tabIconNormal="@mipmap/widget_bar_product_normal"
+            app:tabIconSelected="@mipmap/widget_bar_product_press"
+            app:tabText="首页"
+            app:tabTextSize="13sp"
+            app:textColorNormal="#999999"
+            app:textColorSelected="#46c01b" />
 
         <com.yinglan.alphatabs.AlphaTabView
             android:layout_width="0dp"
