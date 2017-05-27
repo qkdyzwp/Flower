@@ -17,6 +17,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView  = initView(inflater,container);
+        init(rootView);
         return rootView;
     }
     @Override
@@ -30,5 +31,6 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroy();
     }
     protected abstract View initView(LayoutInflater inflater,ViewGroup container);
+    protected abstract void init(View view);
 
 }

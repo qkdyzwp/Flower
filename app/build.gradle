@@ -29,5 +29,7 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     testCompile 'junit:junit:4.12'
     compile 'com.yinglan.alphatabs:library:1.0.5'
+    compile 'me.weyye.hipermission:library:1.0.3'//权限申请
+    compile 'com.bigkoo:convenientbanner:2.0.5'//banner
 
 }

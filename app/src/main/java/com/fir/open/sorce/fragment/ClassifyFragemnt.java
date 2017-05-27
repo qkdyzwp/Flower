@@ -20,4 +20,9 @@ public class ClassifyFragemnt extends BaseFragment {
         test.setText(TAG);
         return view;
     }
+
+    @Override
+    protected void init(View view) {
+
+    }
 }
