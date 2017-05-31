@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 public abstract class ScrPullBaseFragment extends BaseFragment{
-    private SwipeRefreshLayout baseSwipeLayout;
+    public SwipeRefreshLayout baseSwipeLayout;
 
     private ScrollView basePullListView;
 
@@ -43,6 +43,8 @@ public abstract class ScrPullBaseFragment extends BaseFragment{
     public LayoutInflater inflater;
 
     private LinearLayout bomView;
+
+    public int page=1;
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container) {
         return inflater.inflate(R.layout.activity_scr_pull_base,null);
@@ -112,6 +114,7 @@ public abstract class ScrPullBaseFragment extends BaseFragment{
     private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
+            page=1;
             getData();
         }
     };
@@ -148,4 +151,5 @@ public abstract class ScrPullBaseFragment extends BaseFragment{
         basePullListView.setVisibility(View.VISIBLE);
     }
     public abstract void inidData();
+
 }

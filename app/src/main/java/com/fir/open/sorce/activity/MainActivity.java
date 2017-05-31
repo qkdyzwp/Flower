@@ -34,33 +34,9 @@ public class MainActivity extends BaseActivity {
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
         mViewPger.setAdapter(mainAdapter);
         mViewPger.addOnPageChangeListener(mainAdapter);
+        mViewPger.setOffscreenPageLimit(3);
         alphaTabsIndicator = (AlphaTabsIndicator) findViewById(R.id.alphaIndicator);
         alphaTabsIndicator.setViewPager(mViewPger);
-//        //各种权限申请
-//        List<PermissonItem> permissonItems = new ArrayList<PermissonItem>();
-//        permissonItems.add(new PermissonItem(Manifest.permission.CAMERA, "照相机", R.drawable.permission_ic_memory));
-//        permissonItems.add(new PermissonItem(Manifest.permission.ACCESS_FINE_LOCATION, "定位", R.drawable.permission_ic_location));
-//        HiPermission.create(MainActivity.this)
-//                .checkMutiPermission(new PermissionCallback() {
-//                    @Override
-//                    public void onClose() {
-//                        Toast.makeText(MainActivity.this, "关闭了必要权限", Toast.LENGTH_SHORT).show();
-//                    }
-//                    @Override
-//                    public void onFinish() {
-////                        showToast("所有权限申请完成");
-//                    }
-//                    @Override
-//                    public void onDeny(String permisson, int position) {
-//                        Log.i(TAG, "onDeny");
-//                    }
-//                    @Override
-//                    public void onGuarantee(String permisson, int position) {
-//                        Log.i(TAG, "onGuarantee");
-//                    }
-//                });
-
-
     }
     private class MainAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
         private List<Fragment> fragments = new ArrayList<>();
@@ -88,13 +64,7 @@ public class MainActivity extends BaseActivity {
         }
         @Override
         public void onPageSelected(int position) {
-//            if (0 == position) {
-//                alphaTabsIndicator.getTabView(0).showNumber(alphaTabsIndicator.getTabView(0).getBadgeNumber() - 1);
-//            } else if (2 == position) {
-//                alphaTabsIndicator.getCurrentItemView().removeShow();
-//            } else if (3 == position) {
-//                alphaTabsIndicator.removeAllBadge();
-//            }
+
         }
         @Override
         public void onPageScrollStateChanged(int state) {

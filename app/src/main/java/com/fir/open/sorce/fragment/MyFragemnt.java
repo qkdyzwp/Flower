@@ -16,8 +16,7 @@ public class MyFragemnt extends BaseFragment {
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.home_fragment_layout, null);
-        TextView test= (TextView) view.findViewById(R.id.test);
-        test.setText(TAG);
+
         return view;
     }
 

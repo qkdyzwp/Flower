@@ -1,63 +1,75 @@
 package com.fir.open.sorce.fragment;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import com.fir.open.sorce.R;
-import com.fir.open.sorce.activity.TestActivityForPull;
-import com.fir.open.sorce.adapter.PullBaseAdapter;
-import com.fir.open.sorce.fragment.base.BaseFragment;
-import com.fir.open.sorce.fragment.base.PullBaseFragment;
-import com.fir.open.sorce.fragment.base.ScrPullBaseFragment;
-import com.fir.open.sorce.inter.PullData;
-import com.fir.open.sorce.inter.ScrPullData;
-import com.fir.open.sorce.manager.FullyLinearLayoutManager;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.fir.open.sorce.R;
+import com.fir.open.sorce.adapter.HomeAdapter;
+import com.fir.open.sorce.fragment.base.PullBaseFragment;
+import com.fir.open.sorce.inter.PullData;
+import com.fir.open.sorce.view.LocalImageHolderView;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by mododata-android on 2017/5/25.
  */
-
-public class HomeFragemnt extends ScrPullBaseFragment {
-    private View view;
-    private RecyclerView base_pull_list_view;
-
+public class HomeFragemnt extends PullBaseFragment {
+    private HomeAdapter adapter;
+    private ConvenientBanner homeFragmentSlider;//广告位
+    private View headView;
     @Override
-    public View setView() {
-        view=inflater.inflate(R.layout.home_fragment_layout,null);
-        return view;
+    public RecyclerView.LayoutManager getManager() {
+        return new GridLayoutManager(getActivity(),2);
     }
-
     @Override
-    public void loadData(ScrPullData pull) {
+    public RecyclerView.Adapter getAdapter() {
+        adapter=new HomeAdapter(objectList,getActivity());
+        return adapter;
+    }
+    @Override
+    public void loadData(int page, PullData pull) {
         List<String> strList=new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            strList.add("--"+i);
+            strList.add(page+"--"+i);
         }
-        PullBaseAdapter adapter=new PullBaseAdapter(strList,getActivity());
-        base_pull_list_view.setAdapter(adapter);
-        base_pull_list_view.setLayoutManager(new FullyLinearLayoutManager(getActivity()));
-
-        pull.getObject();
+        List<String> imgs=new ArrayList<>();
+        imgs.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496206757045&di=f279417bb31dac14cb3a1aad48b70f46&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F18%2F28%2F61%2F91h58PICY5E_1024.jpg");
+        imgs.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496206780444&di=5d7b9bbd54c58965af2f95d03db25a3d&imgtype=0&src=http%3A%2F%2Fsem.g3img.com%2Fsite%2F34051500%2Fc2_20161009110909_45436.jpg");
+        homeFragmentSlider.setPages(
+                new CBViewHolderCreator<LocalImageHolderView>() {
+                    @Override
+                    public LocalImageHolderView createHolder() {
+                        return new LocalImageHolderView();
+                    }
+                }, imgs)
+                //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
+                .setPageIndicator(new int[]{R.drawable.gray_bg_shape, R.drawable.red_bg_shape})
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Toast.makeText(getActivity(), "你点击了农技广告", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        homeFragmentSlider.startTurning(3000);
+        pull.getObject(strList);
     }
-
     @Override
-    public void inidData() {
-        base_pull_list_view= (RecyclerView) view.findViewById(R.id.base_pull_list_view);
-        List<String> strList=new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            strList.add("--"+i);
-        }
-        PullBaseAdapter adapter=new PullBaseAdapter(strList,getActivity());
-        base_pull_list_view.setAdapter(adapter);
+    public int setHeadForListView() {
+        headView=inflater.inflate(R.layout.banner_layout,null);
+        header.addView(headView);
+        header.attachTo(basePullListView, true);
+        return 1;
+    }
+    @Override
+    public void initData() {
+        homeFragmentSlider= (ConvenientBanner) headView.findViewById(R.id.home_fragment_slider);
         setHeadView(inflater.inflate(R.layout.head_layout,null));
         setEmptyImg(R.mipmap.ic_launcher);
         setEmptyText("该测试数据为空");
-
     }
 }

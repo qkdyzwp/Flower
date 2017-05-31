@@ -1,16 +1,20 @@
 package com.fir.open.sorce.fragment.base;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.fir.open.sorce.R;
 import com.fir.open.sorce.http.HttpLoadEnum;
 import com.fir.open.sorce.inter.PullData;
@@ -24,7 +28,7 @@ import java.util.List;
 public abstract class  PullBaseFragment<T> extends BaseFragment{
     private SwipeRefreshLayout baseSwipeLayout;
 
-    private RecyclerView basePullListView;
+    public RecyclerView basePullListView;
 
     public List<T> objectList = new ArrayList<>();
 
@@ -45,6 +49,10 @@ public abstract class  PullBaseFragment<T> extends BaseFragment{
     private TextView isHaveCoupon;
 
     private LinearLayout headViewForOn;
+
+    public RecyclerViewHeader header;
+
+    private LinearLayout listViewForHead;
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container) {
         return inflater.inflate(R.layout.activity_pull_base,null);
@@ -52,6 +60,7 @@ public abstract class  PullBaseFragment<T> extends BaseFragment{
 
     @Override
     protected void init(View view) {
+        listViewForHead= (LinearLayout) view.findViewById(R.id.listViewForHead);
         headViewForOn= (LinearLayout) view.findViewById(R.id.headViewForOn);
         emptyImg= (ImageView) view.findViewById(R.id.emptyImg);
         isHaveCoupon= (TextView) view.findViewById(R.id.isHaveCoupon);
@@ -66,7 +75,16 @@ public abstract class  PullBaseFragment<T> extends BaseFragment{
                 android.R.color.holo_green_light);
         baseSwipeLayout.setEnabled(true);
         baseSwipeLayout.setOnRefreshListener(mOnRefreshListener);
-        basePullListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        basePullListView.setLayoutManager(getManager());
+        View headViewForList=inflater.inflate(R.layout.layout_head_list,null);
+        header = (RecyclerViewHeader) headViewForList.findViewById(R.id.header);
+       int type= setHeadForListView();//0是不需要添加头部1是需要添加头部
+        if(type==0){
+
+        }else{
+            listViewForHead.addView(headViewForList);
+        }
+        //设置添加listView的头布局
         myAdapter = getAdapter();
         basePullListView.setAdapter(myAdapter);
         initData();
@@ -78,16 +96,19 @@ public abstract class  PullBaseFragment<T> extends BaseFragment{
             }
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if(isSlideToBottom(recyclerView)){
                 if (isHaveMore) {
                     page++;
                     getData(HttpLoadEnum.LOADMORE);
                 } else {
                     Toast.makeText(getActivity(), "没有更多数据", Toast.LENGTH_SHORT).show();
                 }
+                }
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
     }
+    public abstract RecyclerView.LayoutManager getManager();
     /**
      * 获取适配器
      *
@@ -102,14 +123,17 @@ public abstract class  PullBaseFragment<T> extends BaseFragment{
      */
     public abstract void loadData(int page, PullData<T> pull);
     /**
+     * 设置头布局ForListView
+     */
+    public abstract  int setHeadForListView();
+
+    /**
      * 设置头布局
      * @param view
      */
     public void setHeadView(View view){
         headView.addView(view);
     }
-
-
     /**
      * 设置刷新里面的布局
      * @param view
@@ -188,4 +212,10 @@ public abstract class  PullBaseFragment<T> extends BaseFragment{
     }
 
     public abstract  void initData();
+    protected boolean isSlideToBottom(RecyclerView recyclerView) {
+        if (recyclerView == null) return false;
+        if (recyclerView.computeVerticalScrollExtent() + recyclerView.computeVerticalScrollOffset() >= recyclerView.computeVerticalScrollRange())
+            return true;
+        return false;
+    }
 }

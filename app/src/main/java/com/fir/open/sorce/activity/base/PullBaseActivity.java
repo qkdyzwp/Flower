@@ -3,6 +3,7 @@ package com.fir.open.sorce.activity.base;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -77,6 +78,7 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
             }
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if(isSlideToBottom(recyclerView)){
                 if (isHaveMore) {
                     page++;
                     getData(HttpLoadEnum.LOADMORE);
@@ -84,6 +86,7 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
                     Toast.makeText(PullBaseActivity.this, "没有更多数据", Toast.LENGTH_SHORT).show();
                 }
                 super.onScrolled(recyclerView, dx, dy);
+            }
             }
         });
     }
@@ -178,4 +181,10 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
     }
 
     public abstract  void initData();
+    protected boolean isSlideToBottom(RecyclerView recyclerView) {
+        if (recyclerView == null) return false;
+        if (recyclerView.computeVerticalScrollExtent() + recyclerView.computeVerticalScrollOffset() >= recyclerView.computeVerticalScrollRange())
+            return true;
+        return false;
+    }
 }

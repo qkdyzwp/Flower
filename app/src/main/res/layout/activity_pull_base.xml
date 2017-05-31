@@ -29,14 +29,34 @@
                 android:orientation="horizontal">
 
             </LinearLayout>
-            <android.support.v7.widget.RecyclerView
-                android:layout_below="@+id/headViewForOn"
-                android:id="@+id/base_pull_list_view"
+            <FrameLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:scrollbars="none">
-            </android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/headViewForOn">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/base_pull_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|top" />
+                <LinearLayout
+                    android:id="@+id/listViewForHead"
+                    android:layout_width="match_parent"
+                    android:layout_height="201dp"
+                    android:layout_gravity="center_horizontal|top"
+                    android:orientation="horizontal">
+                    android:layout_height="match_parent">
+                </LinearLayout>
+            </FrameLayout>
+            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:layout_below="@+id/headViewForOn"-->
+                <!--android:id="@+id/base_pull_list_view"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@color/white"-->
+                <!--android:scrollbars="none">-->
+            <!--</android.support.v7.widget.RecyclerView>-->
             <ScrollView
                 android:layout_below="@+id/headViewForOn"
                 android:id="@+id/emptyView"
