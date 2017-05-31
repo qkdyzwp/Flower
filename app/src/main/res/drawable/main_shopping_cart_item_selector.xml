@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:drawable="@mipmap/product_detail_shopping_selected_pressed_icon" />
+    <item android:state_selected="false" android:drawable="@mipmap/product_detail_shopping_selected_normal_icon" />
+    <item android:drawable="@mipmap/product_detail_shopping_selected_normal_icon" />
+</selector>

@@ -12,6 +12,11 @@ import java.util.List;
  */
 public class TestActivityForPull extends PullBaseActivity<String> {
     @Override
+    public RecyclerView.LayoutManager getManager() {
+        return null;
+    }
+
+    @Override
     public RecyclerView.Adapter getAdapter() {
         PullBaseAdapter adapter=new PullBaseAdapter(objectList,TestActivityForPull.this);
         return adapter;
@@ -29,7 +34,7 @@ public class TestActivityForPull extends PullBaseActivity<String> {
 
     @Override
     public void initData() {
-        setHeadView(inflater.inflate(R.layout.head_layout,null));
+        setHeadView(inflater.inflate(R.layout.head_layout_for_search,null),0);
         setEmptyImg(R.mipmap.ic_launcher);
         setEmptyText("该测试数据为空");
     }

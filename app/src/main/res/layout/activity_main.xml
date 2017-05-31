@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <include
-        layout="@layout/head_layout"
+        layout="@layout/head_layout_for_search"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:visibility="gone"></include>

@@ -22,7 +22,7 @@ public class TestActivityForScrPull extends ScrPullBaseActivity {
     }
     @Override
     public void inidData() {
-        setHeadView(inflater.inflate(R.layout.head_layout,null));
+        setHeadView(inflater.inflate(R.layout.head_layout_for_search,null));
         setEmptyImg(R.mipmap.ic_launcher);
         setEmptyText("该测试数据为空");
         setBomView(inflater.inflate(R.layout.bom_layout,null));

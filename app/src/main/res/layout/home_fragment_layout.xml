@@ -3,32 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/base_pull_list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|top" />
-
-        <com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="201dp"
-            android:layout_gravity="center_horizontal|top">
-            android:layout_height="match_parent">
-            <com.bigkoo.convenientbanner.ConvenientBanner
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/home_fragment_slider"
-            android:layout_width="match_parent"
-            android:layout_height="201dp"
-            app:canLoop="true" />
-
-        </com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader>
-
     </FrameLayout>
-
 </LinearLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@id/main_sort_item_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_8"
+        android:layout_marginLeft="25dp"
+        android:background="@drawable/main_sort_price_bg_selector"
+        android:gravity="center"
+        android:paddingBottom="@dimen/space_5"
+        android:paddingRight="40dp"
+        android:paddingTop="@dimen/space_13"
+        android:text="@string/app_name"
+        android:textColor="#FD8686"
+        android:textSize="12sp" />
+</FrameLayout>

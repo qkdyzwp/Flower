@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.fir.open.sorce.activity.base.PullBaseActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffffff">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +30,7 @@
                 android:orientation="horizontal">
 
             </LinearLayout>
+
             <FrameLayout
 
                 android:layout_width="match_parent"
@@ -83,6 +85,13 @@
                 </LinearLayout>
 
             </ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/headViewTwo"
+                android:orientation="horizontal"
+                android:layout_below="@+id/headViewForOn">
+            </LinearLayout>
         </RelativeLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

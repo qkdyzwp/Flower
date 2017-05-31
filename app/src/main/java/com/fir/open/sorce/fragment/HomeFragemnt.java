@@ -2,8 +2,11 @@ package com.fir.open.sorce.fragment;
 
 
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -11,7 +14,9 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.fir.open.sorce.R;
 import com.fir.open.sorce.adapter.HomeAdapter;
 import com.fir.open.sorce.fragment.base.PullBaseFragment;
+import com.fir.open.sorce.http.HttpLoadEnum;
 import com.fir.open.sorce.inter.PullData;
+import com.fir.open.sorce.util.DensityUtil;
 import com.fir.open.sorce.view.LocalImageHolderView;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +26,12 @@ import java.util.List;
 public class HomeFragemnt extends PullBaseFragment {
     private HomeAdapter adapter;
     private ConvenientBanner homeFragmentSlider;//广告位
-    private View headView;
+    private View headViewForList;
+    private LinearLayoutManager manager;
     @Override
     public RecyclerView.LayoutManager getManager() {
-        return new GridLayoutManager(getActivity(),2);
+        manager=new GridLayoutManager(getActivity(),2);
+        return manager;
     }
     @Override
     public RecyclerView.Adapter getAdapter() {
@@ -60,16 +67,23 @@ public class HomeFragemnt extends PullBaseFragment {
     }
     @Override
     public int setHeadForListView() {
-        headView=inflater.inflate(R.layout.banner_layout,null);
-        header.addView(headView);
+        headViewForList=inflater.inflate(R.layout.banner_layout,null);
+        header.addView(headViewForList);
         header.attachTo(basePullListView, true);
         return 1;
     }
     @Override
     public void initData() {
-        homeFragmentSlider= (ConvenientBanner) headView.findViewById(R.id.home_fragment_slider);
-        setHeadView(inflater.inflate(R.layout.head_layout,null));
+        homeFragmentSlider= (ConvenientBanner) headViewForList.findViewById(R.id.home_fragment_slider);
+        View headViewForMain=inflater.inflate(R.layout.head_layout_for_search,null);
+        setHeadView(headViewForMain,0);
         setEmptyImg(R.mipmap.ic_launcher);
         setEmptyText("该测试数据为空");
+    }
+    public int getScollYDistance() {
+        int position = manager.findFirstVisibleItemPosition();
+        View firstVisiableChildView = manager.findViewByPosition(position);
+        int itemHeight = firstVisiableChildView.getHeight();
+        return (position) * itemHeight - firstVisiableChildView.getTop();
     }
 }

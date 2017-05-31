@@ -1,30 +1,24 @@
 package com.fir.open.sorce.fragment.base;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader;
 import com.fir.open.sorce.R;
 import com.fir.open.sorce.http.HttpLoadEnum;
 import com.fir.open.sorce.inter.PullData;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by modata_fir on 2017/5/27.
  */
-
 public abstract class  PullBaseFragment<T> extends BaseFragment{
     private SwipeRefreshLayout baseSwipeLayout;
 
@@ -53,6 +47,8 @@ public abstract class  PullBaseFragment<T> extends BaseFragment{
     public RecyclerViewHeader header;
 
     private LinearLayout listViewForHead;
+
+    private LinearLayout headViewTwo;
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container) {
         return inflater.inflate(R.layout.activity_pull_base,null);
@@ -60,6 +56,7 @@ public abstract class  PullBaseFragment<T> extends BaseFragment{
 
     @Override
     protected void init(View view) {
+        headViewTwo= (LinearLayout) view.findViewById(R.id.headViewTwo);
         listViewForHead= (LinearLayout) view.findViewById(R.id.listViewForHead);
         headViewForOn= (LinearLayout) view.findViewById(R.id.headViewForOn);
         emptyImg= (ImageView) view.findViewById(R.id.emptyImg);
@@ -108,6 +105,7 @@ public abstract class  PullBaseFragment<T> extends BaseFragment{
             }
         });
     }
+
     public abstract RecyclerView.LayoutManager getManager();
     /**
      * 获取适配器
@@ -131,8 +129,15 @@ public abstract class  PullBaseFragment<T> extends BaseFragment{
      * 设置头布局
      * @param view
      */
-    public void setHeadView(View view){
-        headView.addView(view);
+    public void setHeadView(View view,int type){
+        if(type==0){//表示的是添加在头部以上
+            headViewTwo.setVisibility(View.GONE);
+            headView.addView(view);
+        }else{//表示浮动在listview上
+            headView.setVisibility(View.GONE);
+            headViewTwo.addView(view);
+        }
+
     }
     /**
      * 设置刷新里面的布局

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:visibility="visible">
+        <RelativeLayout
+            android:id="@+id/rl_bar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#c6011f"></RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/home_fragment_scan"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true">
+
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:id="@+id/returnBtn"
+                android:background="@mipmap/return_btn" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp">
+
+            <View
+                android:id="@+id/view_title_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@drawable/search_bg" />
+
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/home_nav_search" />
+            <EditText
+                android:id="@+id/search_et"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_marginLeft="35dp"
+                android:gravity="center_vertical"
+                android:hint="请输入搜索内容"
+                android:textColorHint="#333333"
+                android:textColor="#333333"
+                android:textSize="15sp"
+                android:background="@null"/>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/fl_action_more"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/search_tv"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_width="55dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                android:text="搜索"
+                android:textColor="#ffffff"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

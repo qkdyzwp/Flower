@@ -15,7 +15,7 @@ import com.fir.open.sorce.fragment.base.BaseFragment;
 public class MyFragemnt extends BaseFragment {
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container) {
-        View view = inflater.inflate(R.layout.home_fragment_layout, null);
+        View view = inflater.inflate(R.layout.fragment_main_user, null);
 
         return view;
     }

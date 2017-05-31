@@ -34,6 +34,14 @@ public class ImageUtil {
                 .dontAnimate()
                 .into(img);
     }
+    public static void initImg(Context context, int resorce, ImageView img){
+        Glide.with(context)
+                .load(resorce)
+                .asBitmap().centerCrop()
+                .placeholder(R.mipmap.error)
+                .dontAnimate()
+                .into(img);
+    }
         /**
          * 自适应宽度加载图片。保持图片的长宽比例不变，通过修改imageView的高度来完全显示图片。
          */

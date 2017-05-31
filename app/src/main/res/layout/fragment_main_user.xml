@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff8f8f8"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/collapse_toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="220.0dip"
+        android:fitsSystemWindows="true"
+        app:layout_scrollFlags="exitUntilCollapsed|scroll">
+
+        <ImageView
+            android:id="@+id/main_user_center_bg"
+            android:layout_width="fill_parent"
+            android:layout_height="220.0dip"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/common_defualt_user_bg" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/main_user_icon_iv"
+                android:layout_width="78.0dip"
+                android:layout_height="78.0dip"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/common_defult_user_icon" />
+
+            <TextView
+                android:id="@+id/main_user_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textSize="15sp"
+                android:text="张三"/>
+
+            <TextView
+                android:id="@+id/main_user_intro_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_14"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/main_user_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="@dimen/space_16">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/toolbar_setting_icon" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/my_integral_shop"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff">
+            <ImageView
+                android:id="@+id/my_integral_shop_img"
+                style="@style/my_menu_left_img"
+                android:src="@mipmap/order_icon" />
+            <TextView
+                style="@style/my_menu_text"
+                android:layout_toRightOf="@+id/my_integral_shop_img"
+                android:text="订单"
+                android:textColor="#333333"
+                android:textSize="14sp"/>
+            <ImageView style="@style/my_menu_right_img" />
+        </RelativeLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/space_15"
+            android:background="#fff0f0f0" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff">
+            <ImageView
+                android:id="@+id/my_integral_shop_img_2"
+                style="@style/my_menu_left_img"
+                android:src="@mipmap/collection_icon" />
+            <TextView
+                style="@style/my_menu_text"
+                android:layout_toRightOf="@+id/my_integral_shop_img_2"
+                android:text="收藏"
+                android:textColor="#333333"
+                android:textSize="14sp"/>
+            <ImageView style="@style/my_menu_right_img" />
+        </RelativeLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/space_15"
+            android:background="#fff0f0f0" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff">
+            <ImageView
+                android:id="@+id/my_integral_shop_img_3"
+                style="@style/my_menu_left_img"
+                android:src="@mipmap/linkman_icon" />
+            <TextView
+                style="@style/my_menu_text"
+                android:layout_toRightOf="@+id/my_integral_shop_img_3"
+                android:text="联系人"
+                android:textColor="#333333"
+                android:textSize="14sp"/>
+            <ImageView style="@style/my_menu_right_img" />
+        </RelativeLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/space_15"
+            android:background="#fff0f0f0" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff">
+            <ImageView
+                android:id="@+id/my_integral_shop_img_4"
+                style="@style/my_menu_left_img"
+                android:src="@mipmap/address_icon" />
+            <TextView
+                style="@style/my_menu_text"
+                android:layout_toRightOf="@+id/my_integral_shop_img_4"
+                android:text="收货地址"
+                android:textColor="#333333"
+                android:textSize="14sp"/>
+            <ImageView style="@style/my_menu_right_img" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -48,7 +48,7 @@ public class HomeFragemnt2 extends ScrPullBaseFragment {
         }
         PullBaseAdapter adapter=new PullBaseAdapter(strList,getActivity());
         base_pull_list_view.setAdapter(adapter);
-        setHeadView(inflater.inflate(R.layout.head_layout,null));
+        setHeadView(inflater.inflate(R.layout.head_layout_for_search,null));
         setEmptyImg(R.mipmap.ic_launcher);
         setEmptyText("该测试数据为空");
 

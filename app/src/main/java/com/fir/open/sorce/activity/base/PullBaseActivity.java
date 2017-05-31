@@ -66,7 +66,7 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
                 android.R.color.holo_green_light);
         baseSwipeLayout.setEnabled(true);
         baseSwipeLayout.setOnRefreshListener(mOnRefreshListener);
-        basePullListView.setLayoutManager(new LinearLayoutManager(this));
+        basePullListView.setLayoutManager(getManager());
         myAdapter = getAdapter();
         basePullListView.setAdapter(myAdapter);
         initData();
@@ -90,6 +90,7 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
             }
         });
     }
+    public abstract RecyclerView.LayoutManager getManager();
     /**
      * 获取适配器
      *
@@ -107,7 +108,7 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
      * 设置头布局
      * @param view
      */
-    public void setHeadView(View view){
+    public void setHeadView(View view,int type){
         headView.addView(view);
     }
 
