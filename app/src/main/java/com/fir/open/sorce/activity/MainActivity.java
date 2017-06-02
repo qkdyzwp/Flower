@@ -1,13 +1,11 @@
 package com.fir.open.sorce.activity;
 
-import android.Manifest;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.widget.Toast;
-
+import com.fir.open.sorce.FlowerApplication;
 import com.fir.open.sorce.R;
 import com.fir.open.sorce.activity.base.BaseActivity;
 import com.fir.open.sorce.fragment.CartFragemnt;
@@ -15,15 +13,13 @@ import com.fir.open.sorce.fragment.ClassifyFragemnt;
 import com.fir.open.sorce.fragment.HomeFragemnt;
 import com.fir.open.sorce.fragment.MyFragemnt;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
+import com.yinglan.alphatabs.OnTabChangedListner;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.weyye.hipermission.HiPermission;
-import me.weyye.hipermission.PermissionCallback;
-import me.weyye.hipermission.PermissonItem;
-
 public class MainActivity extends BaseActivity {
     private AlphaTabsIndicator alphaTabsIndicator;
+    private int selectLocation=0;
     @Override
     public int getLyout() {
         return R.layout.activity_main;
@@ -34,9 +30,30 @@ public class MainActivity extends BaseActivity {
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager());
         mViewPger.setAdapter(mainAdapter);
         mViewPger.addOnPageChangeListener(mainAdapter);
-        mViewPger.setOffscreenPageLimit(3);
         alphaTabsIndicator = (AlphaTabsIndicator) findViewById(R.id.alphaIndicator);
         alphaTabsIndicator.setViewPager(mViewPger);
+        alphaTabsIndicator.setOnTabChangedListner(new OnTabChangedListner() {
+            @Override
+            public void onTabSelected(int tabNum) {
+                if(FlowerApplication.isLogin()){
+                    selectLocation=tabNum;
+                }else{
+                    if(tabNum==2||tabNum==3){
+                        Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                        startActivityForResult(intent,1000);
+                    }else{
+                        selectLocation=tabNum;
+                    }
+                }
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1000){
+            alphaTabsIndicator.setTabCurrenItem(selectLocation);
+        }
     }
     private class MainAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
         private List<Fragment> fragments = new ArrayList<>();

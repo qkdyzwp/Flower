@@ -28,4 +28,10 @@
         <item name="android:textSize">14sp</item>
         <item name="android:layout_marginLeft">15dp</item>
     </style>
+    <style name="AppThemeFor" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:screenOrientation">portrait</item>
+    </style>
 </resources>
