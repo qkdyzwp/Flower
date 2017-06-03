@@ -28,6 +28,7 @@ import java.lang.reflect.Type;
  */
 
 public class LinkmanActivity extends PullBaseActivity<Linkman> {
+
     @Override
     public RecyclerView.LayoutManager getManager() {
         return new LinearLayoutManager(this);
