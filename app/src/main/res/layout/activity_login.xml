@@ -24,6 +24,7 @@
         android:padding="1.0dip">
 
         <EditText
+            android:maxLength="11"
             android:id="@+id/login_username_et"
             android:layout_width="0.0dip"
             android:layout_height="44.0dip"

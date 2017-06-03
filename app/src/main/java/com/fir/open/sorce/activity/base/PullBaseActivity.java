@@ -131,6 +131,14 @@ public abstract class PullBaseActivity<T> extends BaseActivity {
             getData(HttpLoadEnum.LOADFIRST);
         }
     };
+
+    /**
+     * 刷新数据
+     */
+    public void reflashData(){
+        page = 1;
+        getData(HttpLoadEnum.LOADFIRST);
+    }
     /**
      * 加载数据业务处理
      * @param httpload

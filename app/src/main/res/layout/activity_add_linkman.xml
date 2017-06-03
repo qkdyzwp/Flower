@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_all"
+    android:orientation="vertical">
+    <include
+        layout="@layout/head_layout_for_search"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:visibility="visible">
+    </include>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="44.0dip"
+        android:orientation="horizontal"
+        android:padding="1.0dip"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:text="姓名："/>
+        <EditText
+            android:id="@+id/add_linman_name"
+            android:layout_width="match_parent"
+            android:layout_height="44.0dip"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="联系人姓名"
+            android:maxLength="10"
+            android:paddingLeft="10.0dip"
+            android:singleLine="true"
+            android:textColor="#ff000000"
+            android:background="@null"
+            android:textColorHint="#ffbababa"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/background_all"></View>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="44.0dip"
+        android:orientation="horizontal"
+        android:padding="1.0dip"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:layout_gravity="center_vertical"
+            android:text="生日："/>
+        <TextView
+
+            android:gravity="center_vertical"
+            android:id="@+id/add_linman_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="44.0dip"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="联系人生日"
+            android:maxLength="10"
+            android:inputType="number"
+            android:paddingLeft="10.0dip"
+            android:singleLine="true"
+            android:textColor="#ff000000"
+            android:textColorHint="#ffbababa"
+            android:text="2017-03-05"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/add_linkman_save"
+        android:layout_width="fill_parent"
+        android:layout_height="44.0dip"
+        android:layout_marginLeft="@dimen/space_15"
+        android:layout_marginRight="@dimen/space_15"
+        android:layout_marginTop="19.0dip"
+        android:background="@drawable/common_button_bound_red_bg"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="#ffff5b46"
+        android:textSize="14.0sp" />
+</LinearLayout>
