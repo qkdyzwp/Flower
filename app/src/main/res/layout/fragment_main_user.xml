@@ -57,11 +57,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_margin="@dimen/space_16">
+            >
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/set"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="15dp"
                 android:src="@mipmap/toolbar_setting_icon" />
         </FrameLayout>
     </FrameLayout>
@@ -75,7 +77,6 @@
             android:id="@+id/my_integral_shop"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginTop="10dp"
             android:background="#ffffff">
             <ImageView
                 android:id="@+id/my_integral_shop_img"
@@ -97,7 +98,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginTop="10dp"
             android:background="#ffffff">
             <ImageView
                 android:id="@+id/my_integral_shop_img_2"
@@ -119,8 +119,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:background="#ffffff">
+            android:background="#ffffff"
+            android:id="@+id/linkman">
             <ImageView
                 android:id="@+id/my_integral_shop_img_3"
                 style="@style/my_menu_left_img"
@@ -141,7 +141,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginTop="10dp"
             android:background="#ffffff">
             <ImageView
                 android:id="@+id/my_integral_shop_img_4"
@@ -155,5 +154,10 @@
                 android:textSize="14sp"/>
             <ImageView style="@style/my_menu_right_img" />
         </RelativeLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/space_15"
+            android:background="#fff0f0f0" />
     </LinearLayout>
 </LinearLayout>

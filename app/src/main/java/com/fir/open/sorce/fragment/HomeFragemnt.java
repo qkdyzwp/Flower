@@ -91,14 +91,6 @@ public class HomeFragemnt extends PullBaseFragment {
                 Log.e("onFail", result);
             }
         });
-//        List<String> strList=new ArrayList<>();
-//        for (int i = 0; i < 20; i++) {
-//            strList.add(page+"--"+i);
-//        }
-//        List<String> imgs=new ArrayList<>();
-//        imgs.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496206757045&di=f279417bb31dac14cb3a1aad48b70f46&imgtype=0&src=http%3A%2F%2Fpic.qiantucdn.com%2F58pic%2F18%2F28%2F61%2F91h58PICY5E_1024.jpg");
-//        imgs.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496206780444&di=5d7b9bbd54c58965af2f95d03db25a3d&imgtype=0&src=http%3A%2F%2Fsem.g3img.com%2Fsite%2F34051500%2Fc2_20161009110909_45436.jpg");
-//        pull.getObject(strList);
     }
 
     @Override

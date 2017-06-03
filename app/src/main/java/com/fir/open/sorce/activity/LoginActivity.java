@@ -17,6 +17,10 @@ import com.fir.open.sorce.http.Params;
 import com.fir.open.sorce.response.BaseResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.xutils.DbManager;
+import org.xutils.x;
+
 import java.lang.reflect.Type;
 /**
  * Created by modata_fir on 2017/6/2.
@@ -59,22 +63,29 @@ public class LoginActivity extends BaseActivity {
     public void login(){
         HttpUtils http = new HttpUtils();
         Params params = new Params();
-//        params.put("phone",login_username_et.getText().toString());
-//        params.put("password",login_password_et.getText().toString());
+        params.put("phone",login_username_et.getText().toString());
         http.post(FlowerApplication.url + "login", params, new BaseCallBack() {
             @Override
             public void onResponse(String result) {
                 if (mProgressDialog != null) {
                     mProgressDialog.dismiss();
                 }
-                Type objectType = new TypeToken<BaseResponse<Buyer>>() {}.getType();
-                BaseResponse<Buyer> response=new Gson().fromJson(result,objectType);
-                if(response.getData().getCount()<1){
-                    Toast.makeText(LoginActivity.this, "账号不存在", Toast.LENGTH_SHORT).show();
-                }else if(!response.getData().getList().get(0).getPassword().equals(login_password_et.getText().toString())){
-                    Toast.makeText(LoginActivity.this, "密码不正确", Toast.LENGTH_SHORT).show();
-                }else{
-                    finish();
+                try {
+                    Type objectType = new TypeToken<BaseResponse<Buyer>>() {}.getType();
+                    BaseResponse<Buyer> response=new Gson().fromJson(result,objectType);
+                    if(response.getData().getCount()<1){
+                        Toast.makeText(LoginActivity.this, "账号不存在", Toast.LENGTH_SHORT).show();
+                    }else if(!response.getData().getList().get(0).getPassword().equals(login_password_et.getText().toString())){
+                        Toast.makeText(LoginActivity.this, "密码不正确", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        DbManager db = x.getDb(FlowerApplication.getDaoConfig());
+                        db.save(response.getData().getList().get(0));
+                        finish();
+                    }
+                }catch (Exception ex){
+                    Toast.makeText(LoginActivity.this, "账号或密码不正确", Toast.LENGTH_SHORT).show();
+                    ex.printStackTrace();
                 }
             }
             @Override
