@@ -7,7 +7,7 @@
     <include
         layout="@layout/head_layout_for_search"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="@dimen/title"
         android:visibility="visible">
     </include>
     <LinearLayout
