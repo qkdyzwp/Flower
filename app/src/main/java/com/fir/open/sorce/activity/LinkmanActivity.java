@@ -66,6 +66,8 @@ public class LinkmanActivity extends PullBaseActivity<Linkman> {
     });}
     @Override
     public void initData() {
+
+        //155552,P02021
         View headViewForMain = inflater.inflate(R.layout.head_layout_for_search, null);
         TextView title= (TextView) headViewForMain.findViewById(R.id.title);
         TextView handle= (TextView) headViewForMain.findViewById(R.id.handle);

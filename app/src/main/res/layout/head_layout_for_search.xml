@@ -10,12 +10,12 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:id="@+id/back"
             android:src="@mipmap/back_icon"
-            android:padding="8dp"
-            android:visibility="gone"
+            android:padding="13dp"
+            android:visibility="visible"
             />
 
         <TextView
@@ -31,11 +31,11 @@
         <TextView
             android:id="@+id/handle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:padding="@dimen/space_10"
             android:text="编辑"
+            android:paddingRight="10dp"
             android:visibility="invisible"
             android:textSize="15sp" />
     </RelativeLayout>

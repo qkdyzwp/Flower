@@ -48,6 +48,8 @@ public class AddLinkmanActivity extends BaseActivity {
 
     private String linkmanId;
 
+    private TextView handle;
+
     @Override
     public int getLyout() {
         return R.layout.activity_add_linkman;
@@ -55,6 +57,7 @@ public class AddLinkmanActivity extends BaseActivity {
 
     @Override
     public void init() {
+        handle=(TextView)findViewById(R.id.handle);
         add_linman_birthday = (TextView) findViewById(R.id.add_linman_birthday);
         add_linman_name = (EditText) findViewById(R.id.add_linman_name);
         type = getIntent().getStringExtra("type");
@@ -65,6 +68,8 @@ public class AddLinkmanActivity extends BaseActivity {
         if (type.equals("0")) {
             title.setText("添加联系人");
         } else {
+            handle.setVisibility(View.VISIBLE);
+            handle.setText("删除");
             title.setText("修改联系人");
             linkmanId=getIntent().getStringExtra("linkmanId");
             add_linman_name.setText(getIntent().getStringExtra("name"));
@@ -82,6 +87,14 @@ public class AddLinkmanActivity extends BaseActivity {
                         updateLinkman();
                     }
                 }
+            }
+        });
+        handle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mProgressDialog = new ProgressDialog(AddLinkmanActivity.this);
+                mProgressDialog.show();
+                deleteLinkman();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -130,9 +143,7 @@ public class AddLinkmanActivity extends BaseActivity {
                 Log.e("onFail", result);
             }
         });
-
     }
-
     public void updateLinkman() {
         HttpUtils http = new HttpUtils();
         Params params = new Params();
@@ -177,7 +188,43 @@ public class AddLinkmanActivity extends BaseActivity {
     }
 
     public void deleteLinkman() {
-
+        HttpUtils http = new HttpUtils();
+        Params params = new Params();
+        params.put("linkmanId", linkmanId);
+        http.post(FlowerApplication.url + "deleteLinkman", params, new BaseCallBack() {
+            @Override
+            public void onResponse(String result) {
+                if (mProgressDialog != null) {
+                    mProgressDialog.dismiss();
+                }
+                try {
+                    BaseResponse response = new Gson().fromJson(result, BaseResponse.class);
+                    if(response.isSuccess()){
+                        finish();
+                        Action action = new Action();
+                        action.setAction("delete_linkman");
+                        action.setLocation(getIntent().getStringExtra("location"));
+                        action.setMessage(add_linman_name.getText().toString()+","+add_linman_birthday.getText().toString());
+                        //此处可以直接把字符串解析成实体类传过去，用法随意
+                        EventBus.getDefault().post(action);
+                        Toast.makeText(AddLinkmanActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(AddLinkmanActivity.this, response.getResMsg(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception ex) {
+                    Toast.makeText(AddLinkmanActivity.this, "删除失败", Toast.LENGTH_SHORT).show();
+                    ex.printStackTrace();
+                }
+            }
+            @Override
+            public void onFail(String result) {
+                if (mProgressDialog != null) {
+                    mProgressDialog.dismiss();
+                }
+                Toast.makeText(AddLinkmanActivity.this, result, Toast.LENGTH_SHORT).show();
+                Log.e("onFail", result);
+            }
+        });
     }
 
     public boolean isNull() {
