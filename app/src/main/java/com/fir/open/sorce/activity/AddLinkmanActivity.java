@@ -1,6 +1,7 @@
 package com.fir.open.sorce.activity;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -8,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.TimePickerView;
+import com.bigkoo.pickerview.listener.CustomListener;
 import com.fir.open.sorce.FlowerApplication;
 import com.fir.open.sorce.R;
 import com.fir.open.sorce.activity.base.BaseActivity;
@@ -24,6 +27,9 @@ import org.xutils.DbManager;
 import org.xutils.x;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import de.greenrobot.event.EventBus;
 
@@ -50,6 +56,8 @@ public class AddLinkmanActivity extends BaseActivity {
 
     private TextView handle;
 
+    private TimePickerView pvCustomTime;
+
     @Override
     public int getLyout() {
         return R.layout.activity_add_linkman;
@@ -65,6 +73,7 @@ public class AddLinkmanActivity extends BaseActivity {
         back = (ImageView) findViewById(R.id.back);
         add_linkman_save = (TextView) findViewById(R.id.add_linkman_save);
         back.setVisibility(View.VISIBLE);
+        initCustomTimePicker();
         if (type.equals("0")) {
             title.setText("添加联系人");
         } else {
@@ -101,6 +110,12 @@ public class AddLinkmanActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        add_linman_birthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pvCustomTime.show();
             }
         });
     }
@@ -237,5 +252,75 @@ public class AddLinkmanActivity extends BaseActivity {
         } else {
             return true;
         }
+    }
+    private void initCustomTimePicker() {
+        /**
+         * @description
+         *
+         * 注意事项：
+         * 1.自定义布局中，id为 optionspicker 或者 timepicker 的布局以及其子控件必须要有，否则会报空指针.
+         * 具体可参考demo 里面的两个自定义layout布局。
+         * 2.因为系统Calendar的月份是从0-11的,所以如果是调用Calendar的set方法来设置时间,月份的范围也要是从0-11
+         * setRangDate方法控制起始终止时间(如果不设置范围，则使用默认时间1900-2100年，此段代码可注释)
+         */
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(2014, 1, 23);
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(2027, 2, 28);
+        //时间选择器 ，自定义布局
+        pvCustomTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {//选中事件回调
+                add_linman_birthday.setText(getTime(date));
+            }
+        })
+                /*.setType(TimePickerView.Type.ALL)//default is all
+                .setCancelText("Cancel")
+                .setSubmitText("Sure")
+                .setContentSize(18)
+                .setTitleSize(20)
+                .setTitleText("Title")
+                .setTitleColor(Color.BLACK)
+               /*.setDividerColor(Color.WHITE)//设置分割线的颜色
+                .setTextColorCenter(Color.LTGRAY)//设置选中项的颜色
+                .setLineSpacingMultiplier(1.6f)//设置两横线之间的间隔倍数
+                .setTitleBgColor(Color.DKGRAY)//标题背景颜色 Night mode
+                .setBgColor(Color.BLACK)//滚轮背景颜色 Night mode
+                .setSubmitColor(Color.WHITE)
+                .setCancelColor(Color.WHITE)*/
+               /*.gravity(Gravity.RIGHT)// default is center*/
+                .setDate(selectedDate)
+                .setRangDate(startDate, endDate)
+                .setLayoutRes(R.layout.pickerview_custom_time, new CustomListener() {
+
+                    @Override
+                    public void customLayout(View v) {
+                        final TextView tvSubmit = (TextView) v.findViewById(R.id.tv_finish);
+                        ImageView ivCancel = (ImageView) v.findViewById(R.id.iv_cancel);
+                        tvSubmit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                pvCustomTime.returnData();
+                                pvCustomTime.dismiss();
+                            }
+                        });
+                        ivCancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                pvCustomTime.dismiss();
+                            }
+                        });
+                    }
+                })
+                .setType(new boolean[]{true, true, true, false, false, false})
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .setDividerColor(Color.RED)
+                .build();
+
+    }
+    private String getTime(Date date) {//可根据需要自行截取数据显示
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
     }
 }
