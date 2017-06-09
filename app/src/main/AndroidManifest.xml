@@ -32,5 +32,7 @@
             android:screenOrientation="portrait" ></activity>
         <activity android:name=".activity.AddLinkmanActivity"
             android:screenOrientation="portrait" ></activity>
+        <activity android:name=".activity.AddressActivity"
+            android:screenOrientation="portrait" ></activity>
     </application>
 </manifest>

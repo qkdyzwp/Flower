@@ -141,7 +141,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:background="#ffffff">
+            android:background="#ffffff"
+            android:id="@+id/address">
             <ImageView
                 android:id="@+id/my_integral_shop_img_4"
                 style="@style/my_menu_left_img"
