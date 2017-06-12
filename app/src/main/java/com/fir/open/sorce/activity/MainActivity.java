@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import com.fir.open.sorce.FlowerApplication;
 import com.fir.open.sorce.R;
 import com.fir.open.sorce.activity.base.BaseActivity;
+import com.fir.open.sorce.dialog.ColorDialog;
 import com.fir.open.sorce.fragment.CartFragemnt;
 import com.fir.open.sorce.fragment.ClassifyFragemnt;
 import com.fir.open.sorce.fragment.HomeFragemnt;
@@ -48,6 +49,30 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+
+        ColorDialog dialog = new ColorDialog(MainActivity.this);
+        dialog.setColor("#8ECB54");
+        dialog.setAnimationEnable(true);
+        dialog.setTitle("提示");
+        dialog.setContentText("有新版本是否进行更新");
+        dialog.setNegativeListener("取消", new ColorDialog.OnNegativeListener() {
+            @Override
+            public void onClick(ColorDialog dialog) {
+                dialog.dismiss();
+            }
+        });
+        dialog.setPositiveListener("确定", new ColorDialog.OnPositiveListener() {
+            @Override
+            public void onClick(ColorDialog dialog) {
+                dialog.dismiss();
+//                                        update.downLoadApk();
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, BasicDownloadActivity.class);
+//                intent .putExtra("url",response.getUrl());
+//                intent .putExtra("name",response.getName());
+                startActivity(intent);
+            }
+        }).show();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

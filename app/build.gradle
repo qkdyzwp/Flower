@@ -44,4 +44,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile project(':pickerview')
+    compile project(':rxdownload2')
 }

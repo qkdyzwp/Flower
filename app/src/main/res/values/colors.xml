@@ -6,4 +6,19 @@
     <color name="white">#ffffff</color>
     <color name="background_all">#fff8f8f8</color>
     <color name="color_theme">#ffd4237a</color>
+
+    <color name="color_dialog_gray">#ededf3</color>
+    <color name="color_dialog_title">#303030</color>
+    <color name="color_dialog_content_prompt">#343434</color>
+
+    <color name="color_type_info">#79b3e4</color>
+    <color name="color_type_help">#e8bd4b</color>
+    <color name="color_type_wrong">#ed7861</color>
+    <color name="color_type_warning">#e8bd4b</color>
+    <color name="color_type_success">#90b06e</color>
+    <color name="one_layout_item_press_color">#f4f4f4</color>
+
+    <color name="expand_tab_popview_item_press_color">#f4f4f4</color>
+    <color name="no_color">#00000000</color>
+    <color name="red">#ff0000</color>
 </resources>
