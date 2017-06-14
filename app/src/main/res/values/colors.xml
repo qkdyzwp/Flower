@@ -17,8 +17,9 @@
     <color name="color_type_warning">#e8bd4b</color>
     <color name="color_type_success">#90b06e</color>
     <color name="one_layout_item_press_color">#f4f4f4</color>
-
     <color name="expand_tab_popview_item_press_color">#f4f4f4</color>
     <color name="no_color">#00000000</color>
     <color name="red">#ff0000</color>
+    <color name="color_dialog_content">#ed7861</color>
+    <color name="black">#000000</color>
 </resources>
