@@ -52,15 +52,84 @@
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="25dp"
+
+            >
             <TextView
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#333333"
                 android:textSize="12sp"
-                android:text="王鹏"/>
+                android:layout_marginLeft="7dp"
+                android:text="王鹏"
+                android:id="@+id/address_item_name"/>
+            <TextView
+                android:layout_marginRight="7dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textSize="12sp"
+                android:text="18646082763"
+                android:id="@+id/address_item_phone"
+                android:layout_alignParentRight="true"/>
         </RelativeLayout>
     </LinearLayout>
+    <TextView
+        android:id="@+id/address_item_dddress"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginLeft="7dp"
+        android:gravity="center_vertical"
+        android:text="黑龙江省哈尔滨市"
+        android:textSize="12sp"
+        android:textColor="#333333"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/background_all"></View>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <CheckBox
+            android:id="@+id/cb_is_defualt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:clickable="true"
+            android:paddingLeft="5dp"
+            android:text="设为默认"
+            android:textColor="#808080" />
+
+        <TextView
+            android:layout_marginRight="7dp"
+            android:id="@+id/address_item_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="编辑"
+            android:textColor="#808080" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/txt_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="#808080" />
+    </RelativeLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"

@@ -59,9 +59,11 @@ public class AddAddressActivity extends BaseActivity {
 
     private TimePickerView pvCustomTime;
 
+    private String isDefault;
+
     @Override
     public int getLyout() {
-        return R.layout.activity_add_linkman;
+        return R.layout.activity_add_address;
     }
 
     @Override
@@ -70,7 +72,7 @@ public class AddAddressActivity extends BaseActivity {
         add_address = (TextView) findViewById(R.id.add_address);
         add_address_detail= (EditText) findViewById(R.id.add_address_detail);
         add_address_phone= (EditText) findViewById(R.id.add_address_phone);
-        add_address_name = (EditText) findViewById(R.id.add_linman_name);
+        add_address_name = (EditText) findViewById(R.id.add_address_name);
         type = getIntent().getStringExtra("type");
         title = (TextView) findViewById(R.id.title);
         back = (ImageView) findViewById(R.id.back);
@@ -88,6 +90,7 @@ public class AddAddressActivity extends BaseActivity {
             add_address.setText(getIntent().getStringExtra("address"));
             add_address_detail.setText(getIntent().getStringExtra("detail"));
             add_address_phone.setText(getIntent().getStringExtra("phone"));
+            isDefault=getIntent().getStringExtra("isDefault");
         }
         add_linkman_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +101,7 @@ public class AddAddressActivity extends BaseActivity {
                     if (type.equals("0")) {
                         saveAddress();
                     } else {
-                        updateLinkman();
+                        updateAddress();
                     }
                 }
             }
@@ -108,7 +111,7 @@ public class AddAddressActivity extends BaseActivity {
             public void onClick(View v) {
                 mProgressDialog = new ProgressDialog(AddAddressActivity.this);
                 mProgressDialog.show();
-                deleteLinkman();
+                deleteAddress();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +127,6 @@ public class AddAddressActivity extends BaseActivity {
             }
         });
     }
-
     /**
      * 保存
      */
@@ -135,6 +137,7 @@ public class AddAddressActivity extends BaseActivity {
         params.put("receiver", add_address_name.getText().toString());
         params.put("address", add_address.getText().toString()+"-"+add_address_detail.getText().toString());
         params.put("phone", add_address_phone.getText().toString());
+        params.put("isDefault", "no");
         http.post(FlowerApplication.url + "addAddress", params, new BaseCallBack() {
             @Override
             public void onResponse(String result) {
@@ -168,7 +171,7 @@ public class AddAddressActivity extends BaseActivity {
             }
         });
     }
-    public void updateLinkman() {
+    public void updateAddress() {
         HttpUtils http = new HttpUtils();
         Params params = new Params();
         params.put("deliveryAddressId", addressId);
@@ -176,7 +179,12 @@ public class AddAddressActivity extends BaseActivity {
         params.put("receiver", add_address_name.getText().toString());
         params.put("address", add_address.getText().toString()+add_address_detail.getText().toString());
         params.put("phone", add_address_phone.getText().toString());
-        http.post(FlowerApplication.url + "updateLinkman", params, new BaseCallBack() {
+        if(isDefault!=null&&isDefault.equals("yes")){
+            params.put("isDefault", "yes");
+        }else{
+            params.put("isDefault", "no");
+        }
+        http.post(FlowerApplication.url + "updateAddress", params, new BaseCallBack() {
             @Override
             public void onResponse(String result) {
                 if (mProgressDialog != null) {
@@ -212,7 +220,7 @@ public class AddAddressActivity extends BaseActivity {
         });
     }
 
-    public void deleteLinkman() {
+    public void deleteAddress() {
         HttpUtils http = new HttpUtils();
         Params params = new Params();
         params.put("deliveryAddressId", addressId);

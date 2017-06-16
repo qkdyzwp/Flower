@@ -51,8 +51,8 @@ public class AddressActivity extends PullBaseActivity<Delivery> {
         http.post(FlowerApplication.url + "queryAddress", params, new BaseCallBack() {
             @Override
             public void onResponse(String result) {
-                Type objectType = new TypeToken<BaseResponse<Linkman>>() {}.getType();
-                BaseResponse<Linkman> response=new Gson().fromJson(result,objectType);
+                Type objectType = new TypeToken<BaseResponse<Delivery>>() {}.getType();
+                BaseResponse<Delivery> response=new Gson().fromJson(result,objectType);
                 if(response.isSuccess()){
                     pull.getObject(response.getData().getList());
                 }else{
@@ -88,7 +88,7 @@ public class AddressActivity extends PullBaseActivity<Delivery> {
         handle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(AddressActivity.this,AddressActivity.class);
+                Intent intent=new Intent(AddressActivity.this,AddAddressActivity.class);
                 intent.putExtra("type","0");
                 startActivity(intent);
             }
